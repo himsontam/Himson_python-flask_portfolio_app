@@ -17,13 +17,13 @@ def home_page():
 def profile(name):
 	return render_template('index.html', name=name)
 
-# @app.route('/reverse_sentence', methods=['GET','POST'])
-# def reverse_sentence_post():
-#     if request.method == 'GET':
-# 	  	return render_template('reverse_sentence.html')
-#     elif request.method == 'POST':
-#       sentence = str(request.form['text'])
-#       return render_template('reverse_Sentence.html', result=sentence[::-1])
+@app.route('/reverse_sentence', methods=['GET','POST'])
+def reverse_sentence_post():
+    if request.method == 'GET':
+	  	return render_template('reverse_sentence.html')
+    elif request.method == 'POST':
+      sentence = str(request.form['text'])
+      return render_template('reverse_sentence.html', result=sentence[::-1])
 
 @app.route('/add_numbers', methods=['GET','POST'])
 def add_numbers_post():
