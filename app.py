@@ -57,7 +57,7 @@ def multiply_numbers_post():
   	      except ValueError:
   	      	return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
-@app.route('/square_number', methods=['GET','POST'])
+@app.route('/square_numbers', methods=['GET','POST'])
 def square_numbers_post():
 	  # --> ['5', '6', '8']
 	  # print(type(request.form['text']))
