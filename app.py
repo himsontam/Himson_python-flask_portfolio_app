@@ -113,18 +113,18 @@ def time_post():
             return render_template('time.html', result=answer)
 
 
-# @app.route('/converter', methods=['GET','POST'])
-# def converter_post():
-#     if request.method == 'GET':
-# 	  	  return render_template('converter.html')
-#     elif request.method == 'POST':
-#         meters = 0.0
-#         try:
-#             value = float(request.form['text'])
-#             meters = (0.3048 * value * 10000.0 + 0.5) / 10000.0
-#   	        return render_template('converter.html', result=str('{:0.4f}'.format(meters)))
-#         except ValueError:
-#             return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
+@app.route('/converter', methods=['GET','POST'])
+def converter_post():
+      if request.method == 'GET':
+          return render_template('converter.html')
+      elif request.method == 'POST':
+          meters = 0.0
+          try:
+              value = float(request.form['text'])
+              meters = (0.3048 * value * 10000.0 + 0.5) / 10000.0
+              return render_template('converter.html', result=str('{:0.4f}'.format(meters)))
+          except ValueError:
+              return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
          
 
