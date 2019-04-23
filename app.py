@@ -120,11 +120,11 @@ def converter_post():
     elif request.method == 'POST':
         meters = 0.0
         try:
-          value = float(request.form['text'])
-          meters = (0.3048 * value * 10000.0 + 0.5) / 10000.0
-  	      return render_template('converter.html', result=str('{:0.4f}'.format(meters)))
+            value = float(request.form['text'])
+            meters = (0.3048 * value * 10000.0 + 0.5) / 10000.0
+  	        return render_template('converter.html', result=str('{:0.4f}'.format(meters)))
         except ValueError:
-          return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
+            return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
          
 
