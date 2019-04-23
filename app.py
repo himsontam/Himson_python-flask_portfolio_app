@@ -57,6 +57,19 @@ def multiply_numbers_post():
   	      except ValueError:
   	      	return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
 
+@app.route('/square_number', methods=['GET','POST'])
+def square_numbers_post():
+	  # --> ['5', '6', '8']
+	  # print(type(request.form['text']))
+	  if request.method == 'GET':
+	  	return render_template('square_numbers.html')
+	  elif request.method == 'POST':
+  	      try:
+  	      	number = int(request.form['text'])
+  	      	return render_template('square_numbers.html', result=number**2)
+  	      except ValueError:
+  	      	return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
+
 @app.route('/shopping_list', methods=['GET','POST'])
 def shopping_list_post():
 	  # --> ['5', '6', '8']
