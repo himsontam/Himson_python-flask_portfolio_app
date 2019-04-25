@@ -4,16 +4,6 @@ import pytz # timezone
 import requests
 import os
 
-from io import BytesIO
-import matplotlib
-matplotlib.use('Agg')
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-import numpy as np
-import prettyplotlib as ppl
-import matplotlib.pyplot as plt
-from flask import flash
-
-
 app = Flask(__name__)
 
 
@@ -133,52 +123,6 @@ def converter_post():
               return render_template('converter.html', result=str('{:0.4f}'.format(meters)))
           except ValueError:
               return "Easy now! Let's keep it simple! 2 numbers with a space between them please"
-
-@app.route('/contact', methods=['GET', 'POST'])
-def contact():
-			if request.method == 'GET':
-				return render_template('contact.html')
-			elif request.method == 'POST':
-				import email.utils
-				from email.mime.text import MIMEText
-
-				# Import smtplib (to allow us to email)
-				import smtplib
-
-				# set the 'from' address,
-				fromaddr = str(request.form['email'])
-				print(fromaddr)
-				# set the 'to' addresses,
-				toaddrs = ['goranmrd@gmail.com']
-				tik = 'wzhvmttetwgxfngf'
-				tak = tik[::-1]
-				for to in toaddrs:
-						msg = MIMEText('Name: '+str(request.form['name'])+'\n'+'Email: '+str(request.form['email'])+'\n'+'Phone: '+str(request.form['phone'])+'\n'+'Message: '+str(request.form['message']))
-						msg.set_unixfrom('author')
-						msg['To'] = email.utils.formataddr(('Recipient', to))
-						msg['From'] = email.utils.formataddr(('Flask Portfolio', fromaddr))
-						msg['Subject'] = 'Flask Portfolio Contact'
-
-						# setup the email server,
-						server = smtplib.SMTP('smtp.gmail.com', 587)
-						server.starttls()
-						server.login("lokhimtamhimson@gmail.com", tak)
-
-						# Print the email's contents
-						print('From: ' + fromaddr)
-						print('To: ' + str(to))
-						print('Message: ' + msg.as_string())
-
-						# send the email
-						server.sendmail(fromaddr, to, msg.as_string())
-						# disconnect from the server
-						server.quit()
-				try:
-					flash('Message sent!')
-					return render_template('contact.html')
-				except Exception as e:
-					flash(e)
-					return render_template('contact.html')
          
 
 @app.route('/python_apps')
